@@ -7,11 +7,11 @@
 -- Tabla: usuario
 -- ------------------------------------------------------
 INSERT INTO `usuario` (`IdUsuario`, `NombreUsuario`, `Contrasena`, `Rol`) VALUES
-(1, 'admin', 'admin', 1),  -- admin
-(2, 'usuario1', '1234', 0),
-(3, 'usuario2', '1234', 0),
-(4, 'usuario3', '1234', 0),
-(5, 'usuario4', '1234', 0);
+(1, 'admin', 'admin', 0),  -- admin
+(2, 'usuario1', '1234', 1),
+(3, 'usuario2', '1234', 1),
+(4, 'usuario3', '1234', 1),
+(5, 'usuario4', '1234', 1);
 
 -- ------------------------------------------------------
 -- Tabla: socio

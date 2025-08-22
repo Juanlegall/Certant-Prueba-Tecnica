@@ -1,0 +1,224 @@
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+--
+-- Host: localhost    Database: gimnasioproject
+-- ------------------------------------------------------
+-- Server version	5.7.18-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `asistencia`
+--
+create schema gimnasioproject;
+use gimnasioproject;
+DROP TABLE IF EXISTS `asistencia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `asistencia` (
+  `IdAsistencia` int(11) NOT NULL AUTO_INCREMENT,
+  `IdReserva` int(11) NOT NULL,
+  `IdEstadoAsistencia` int(11) NOT NULL,
+  `beneficio` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`IdAsistencia`),
+  KEY `IdReserva` (`IdReserva`),
+  KEY `IdEstadoAsistencia` (`IdEstadoAsistencia`),
+  CONSTRAINT `asistencia_ibfk_1` FOREIGN KEY (`IdReserva`) REFERENCES `reservas` (`IdReserva`),
+  CONSTRAINT `asistencia_ibfk_2` FOREIGN KEY (`IdEstadoAsistencia`) REFERENCES `estadoasistencia` (`IdEstadoAsistencia`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `clase`
+--
+
+DROP TABLE IF EXISTS `clase`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `clase` (
+  `IdClase` int(11) NOT NULL AUTO_INCREMENT,
+  `IdSucursal` int(11) NOT NULL,
+  `Descripcion` varchar(30) DEFAULT NULL,
+  `CapacidadMaxima` int(11) DEFAULT NULL,
+  `IdTipoClase` int(11) NOT NULL,
+  `Fecha` date DEFAULT NULL,
+  `HorarioInicio` time DEFAULT NULL,
+  `HorarioFin` time DEFAULT NULL,
+  `IdProfesor` int(11) NOT NULL,
+  `IdEstadoClase` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`IdClase`),
+  KEY `IdSucursal` (`IdSucursal`),
+  KEY `IdTipoClase` (`IdTipoClase`),
+  KEY `IdProfesor` (`IdProfesor`),
+  KEY `clase_ibfk_4` (`IdEstadoClase`),
+  CONSTRAINT `clase_ibfk_1` FOREIGN KEY (`IdSucursal`) REFERENCES `sucursal` (`IdSucursal`),
+  CONSTRAINT `clase_ibfk_2` FOREIGN KEY (`IdTipoClase`) REFERENCES `tipoclase` (`IdTipoClase`),
+  CONSTRAINT `clase_ibfk_3` FOREIGN KEY (`IdProfesor`) REFERENCES `profesor` (`IdProfesor`),
+  CONSTRAINT `clase_ibfk_4` FOREIGN KEY (`IdEstadoClase`) REFERENCES `estadoclase` (`IdEstadoClase`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `estadoasistencia`
+--
+
+DROP TABLE IF EXISTS `estadoasistencia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `estadoasistencia` (
+  `IdEstadoAsistencia` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(20) NOT NULL,
+  PRIMARY KEY (`IdEstadoAsistencia`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `estadoclase`
+--
+
+DROP TABLE IF EXISTS `estadoclase`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `estadoclase` (
+  `IdEstadoClase` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(30) NOT NULL,
+  PRIMARY KEY (`IdEstadoClase`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `estadoreserva`
+--
+
+DROP TABLE IF EXISTS `estadoreserva`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `estadoreserva` (
+  `IdEstadoReserva` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(30) NOT NULL,
+  PRIMARY KEY (`IdEstadoReserva`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `profesor`
+--
+
+DROP TABLE IF EXISTS `profesor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `profesor` (
+  `IdProfesor` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(20) NOT NULL,
+  `Telefono` varchar(15) DEFAULT NULL,
+  `Estado` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`IdProfesor`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `reservas`
+--
+
+DROP TABLE IF EXISTS `reservas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reservas` (
+  `IdReserva` int(11) NOT NULL AUTO_INCREMENT,
+  `IdSocio` int(11) NOT NULL,
+  `IdClase` int(11) NOT NULL,
+  `IdEstadoReserva` int(11) NOT NULL,
+  PRIMARY KEY (`IdReserva`),
+  KEY `IdSocio` (`IdSocio`),
+  KEY `IdClase` (`IdClase`),
+  KEY `IdEstadoReserva` (`IdEstadoReserva`),
+  CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`IdSocio`) REFERENCES `socio` (`IdSocio`),
+  CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`IdClase`) REFERENCES `clase` (`IdClase`),
+  CONSTRAINT `reservas_ibfk_3` FOREIGN KEY (`IdEstadoReserva`) REFERENCES `estadoreserva` (`IdEstadoReserva`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `socio`
+--
+
+DROP TABLE IF EXISTS `socio`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `socio` (
+  `IdSocio` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(20) NOT NULL,
+  `Email` varchar(50) DEFAULT NULL,
+  `Telefono` varchar(15) DEFAULT NULL,
+  `Estado` tinyint(1) NOT NULL DEFAULT '1',
+  `IdUsuario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`IdSocio`),
+  UNIQUE KEY `Email` (`Email`),
+  UNIQUE KEY `uq_socio_usuario` (`IdUsuario`),
+  CONSTRAINT `fk_socio_usuario` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`IdUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `sucursal`
+--
+
+DROP TABLE IF EXISTS `sucursal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sucursal` (
+  `IdSucursal` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(20) NOT NULL,
+  `Calle` varchar(30) DEFAULT NULL,
+  `Numero` varchar(10) DEFAULT NULL,
+  `Ciudad` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`IdSucursal`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `tipoclase`
+--
+
+DROP TABLE IF EXISTS `tipoclase`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tipoclase` (
+  `IdTipoClase` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(30) NOT NULL,
+  PRIMARY KEY (`IdTipoClase`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuario` (
+  `IdUsuario` int(11) NOT NULL AUTO_INCREMENT,
+  `NombreUsuario` varchar(20) NOT NULL,
+  `Contrasena` varchar(50) NOT NULL,
+  `Rol` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`IdUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

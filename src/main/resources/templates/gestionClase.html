@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Clases</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .scrollbar-thin {
+            scrollbar-width: thin;
+            scrollbar-color: #3b82f6 #f3f4f6;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+            background-color: #3b82f6;
+            border-radius: 4px;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar-track {
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+<div class="flex h-screen bg-gray-100">
+    <div class="bg-white w-64 p-6 flex flex-col justify-between shadow-lg">
+        <div>
+            <div class="mb-8">
+                <h1 class="text-xl font-bold text-gray-800">Logo</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="mb-4">
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                            Home
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a th:href="@{/Admin/gestionClase}" class="flex items-center p-2 rounded-lg bg-blue-100 text-blue-600 font-semibold">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 0a2 2 0 002 2h2a2 2 0 002-2"></path></svg>
+                            Gestión de Clases
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a th:href="@{/Admin/gestionCliente}" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h-4a2 2 0 01-2-2V8a2 2 0 012-2h4a2 2 0 012 2v10a2 2 0 01-2 2z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v4m0 0a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2a2 2 0 012-2h2z"></path></svg>
+                            Gestión de Clientes
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a th:href="@{/Admin/gestionReserva}" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h.01M17 11h.01M9 15h.01M15 15h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Gestión de reservas
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a th:href="@{/Admin/controlAsistencia}" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v10a2 2 0 002 2h5m-5-2h14m-14 0l-2-2m2 2v-4m-2 4h4m-4 0a2 2 0 01-2 2h-2a2 2 0 01-2-2m-2-4h14m-14 0v-4m14 4h-4m4 0a2 2 0 002-2v-2a2 2 0 00-2-2h-4a2 2 0 00-2 2v2a2 2 0 002 2z"></path></svg>
+                            Gestión asistencia
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a th:href="@{/Admin/historialAsistencia}" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m-2 2v-4m6 4v-4m-2 4v-2m2-4v-2m0 2h.01M12 21a9 9 0 110-18 9 9 0 010 18z"></path></svg>
+                            Reportes y estadísticas
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="w-full">
+            <a th:href="@{/Redirect/login}" class="w-full text-center py-2 px-4 bg-red-500 text-white font-bold rounded-lg shadow hover:bg-red-600 transition-colors duration-200">
+                Salir
+            </a>
+        </div>
+    </div>
+
+    <div class="flex-1 flex flex-col p-8 overflow-y-auto scrollbar-thin">
+        <header class="flex items-center justify-between mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">Clases</h1>
+            <div class="flex space-x-4">
+                <a th:href="@{/Admin/gestionClase}" class="px-6 py-2 text-white bg-blue-600 rounded-lg shadow-md font-semibold hover:bg-blue-700 transition-colors duration-200">LISTADO</a>
+                <a th:href="@{/Admin/altaClase}" class="px-6 py-2 text-gray-600 hover:text-blue-600 transition-colors duration-200">AGREGAR</a>
+            </div>
+        </header>
+
+        <div class="flex-grow bg-white p-6 rounded-lg shadow-lg">
+            <div class="mb-6 flex items-center">
+                <input type="text" placeholder="Buscar" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Título</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Capacidad máxima</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Horario Inicio</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Horario fin</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Profesor</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sucursal</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo Clase</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                    <tr th:each="clase : ${ListaClase}">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" th:text="${clase.Descripcion}">Yoga</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" th:text="${clase.CapacidadMaxima}">20</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" th:text="${clase.Fecha}">2025-08-20</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" th:text="${clase.HorarioInicio}">09:00</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" th:text="${clase.HorarioFin}">10:00</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" th:text="${clase.profesor.Nombre}">Juan Pérez</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" th:text="${clase.sucursal.Nombre}">Centro</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" th:text="${clase.tipoclase.Descripcion}">Hatha</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-2">Editar</a>
+                            <a href="#" class="text-red-600 hover:text-red-900">Eliminar</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 flex justify-end items-center">
+                <div class="flex items-center text-sm font-medium text-gray-700">
+                    <button class="px-3 py-1 text-gray-500 hover:text-gray-700">&lt;&lt;</button>
+                    <button class="px-3 py-1 text-gray-500 hover:text-gray-700">&lt;</button>
+                    <span class="px-3 py-1 font-bold text-white bg-blue-600 rounded-lg">1</span>
+                    <a href="#" class="px-3 py-1 text-gray-700 hover:bg-gray-200 rounded-lg">2</a>
+                    <a href="#" class="px-3 py-1 text-gray-700 hover:bg-gray-200 rounded-lg">3</a>
+                    <button class="px-3 py-1 text-gray-500 hover:text-gray-700">&gt;</button>
+                    <button class="px-3 py-1 text-gray-500 hover:text-gray-700">&gt;&gt;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("Agregar").addEventListener("click", function(){window.location.href=[[@{/altaClase}]];});
+</script>
+</body>
+</html>

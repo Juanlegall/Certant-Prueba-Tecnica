@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clases Disponibles</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Estilo personalizado para un scrollbar más fino si es necesario */
+    .scrollbar-thin {
+        scrollbar-width: thin;
+        scrollbar-color: #3b82f6 #f3f4f6;
+    }
+    .scrollbar-thin::-webkit-scrollbar {
+        width: 8px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+        background-color: #3b82f6;
+        border-radius: 4px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-track {
+        background-color: #f3f4f6;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+<div class="flex h-screen bg-gray-100">
+  <div class="bg-white w-64 p-6 flex flex-col justify-between shadow-lg">
+    <div>
+      <div class="mb-8">
+        <h1 class="text-xl font-bold text-gray-800">Logo</h1>
+      </div>
+      <nav>
+        <ul>
+          <li class="mb-4">
+            <a th:href="@{/Socio/ClienteHome}" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-200">
+              <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+              Home
+            </a>
+          </li>
+          <li class="mb-4">
+            <a th:href="@{/Socio/ClienteReserva}" class="flex items-center p-2 rounded-lg bg-blue-600 text-white font-semibold">
+              <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 0a2 2 0 002 2h2a2 2 0 002-2"></path></svg>
+              Clases
+            </a>
+          </li>
+          <li class="mb-4">
+            <a th:href="@{/Socio/MisReservas}" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-200">
+              <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h-4a2 2 0 01-2-2V8a2 2 0 012-2h4a2 2 0 012 2v10a2 2 0 01-2 2z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v4m0 0a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2a2 2 0 012-2h2z"></path></svg>
+              Mis Reservas
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="w-full">
+      <a th:href="@{/Redirect/login}" class="w-full text-center py-2 px-4 bg-red-500 text-white font-bold rounded-lg shadow hover:bg-red-600 transition-colors duration-200">
+        Salir
+      </a>
+    </div>
+  </div>
+
+  <div class="flex-1 flex flex-col p-8 overflow-y-auto scrollbar-thin">
+    <header class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl font-bold text-gray-800">Clases</h1>
+      <div class="flex space-x-4">
+        <button class="px-6 py-2 text-white bg-blue-600 rounded-lg shadow-md font-semibold hover:bg-blue-700 transition-colors duration-200">CLASES</button>
+      </div>
+    </header>
+    <div th:if="${#lists.isEmpty(clases)}" class="text-center p-4 bg-yellow-100 text-yellow-700 rounded-lg">
+      No hay clases disponibles en este momento.
+    </div>
+    <div th:unless="${#lists.isEmpty(clases)}"  class="flex-grow grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div th:each="clase : ${clases}" class="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between">
+        <div>
+          <div class="bg-blue-100 text-blue-800 p-4 rounded-lg mb-4">
+            <p class="font-bold text-lg mb-2" th:text="${clase.descripcion}">DESCRIPCION</p>
+            <div class="text-sm">
+              <p><strong class="font-semibold">Fecha:</strong> <span th:text="${clase.fecha}"></span></p>
+              <p><strong class="font-semibold">Horario:</strong> <span th:text="${clase.horarioInicio + ' - ' + clase.horarioFin}"></span></p>
+              <p><strong class="font-semibold">Lugar disponible</strong> <span th:text="${clase.cantidadReserva + '/' + clase.capacidadMaxima}"></span></p>
+              <p><strong class="font-semibold">Sucursal:</strong> <span th:text="${clase.descripcion}"></span></p>
+            </div>
+          </div>
+        </div>
+        <div th:if="${clase.capacidadMaxima>clase.cantidadReserva}"class="mt-4">
+          <form th:action="@{/Socio/altaReserva}" method="post" onsubmit="return AdvertenciaReserva(this)">
+            <input type="hidden" name="idClase" th:value="${clase.IdClase}" />
+            <button type="submit"
+                    class="w-full py-2 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600 transition-colors duration-200">
+              ANOTARSE
+            </button>
+          </form>
+        </div>
+        <div th:if="${clase.capacidadMaxima<=clase.cantidadReserva}"class="mt-4">
+          <button type="button" disabled
+                  class="w-full py-2 bg-gray-300 text-gray-500 font-bold rounded-lg shadow cursor-not-allowed">
+            CLASE LLENA
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function AdvertenciaReserva(form) {
+      const advertencia = "En caso de no asistir cancele la reserva, de lo contrario verás reflejado un monto de 2000 pesos en la cuota del mes siguiente.";
+      if (confirm(advertencia)) {
+          return true;
+      }
+      return false;
+  }
+</script>
+</body>
+</html>

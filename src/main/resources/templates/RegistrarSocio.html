@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrarse</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans flex items-center justify-center h-screen">
+<div class="bg-white p-10 rounded-3xl shadow-lg max-w-lg w-full text-center">
+  <h1 class="text-2xl font-bold text-gray-800 mb-6">Registrarse</h1>
+
+  <form action="#" th:action="@{/Redirect/GuardarSocio}" th:object="${usuaxsoc}" method="post" class="space-y-6">
+    <div>
+      <label for="nombre" class="block text-gray-700 font-medium text-left mb-1">Nombre</label>
+      <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              th:field="*{Nombre}"
+              placeholder="Ingrese su nombre"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+      />
+    </div>
+
+    <div>
+      <label for="email" class="block text-gray-700 font-medium text-left mb-1">Email</label>
+      <input
+              type="email"
+              id="email"
+              name="email"
+              th:field="*{Email}"
+              placeholder="Ingrese su email"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+      />
+    </div>
+
+    <div>
+      <label for="telefono" class="block text-gray-700 font-medium text-left mb-1">Teléfono</label>
+      <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              th:field="*{Telefono}"
+              placeholder="Ingrese su teléfono"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+      />
+    </div>
+
+    <div>
+      <label for="nombreUsuario" class="block text-gray-700 font-medium text-left mb-1">Nombre de Usuario</label>
+      <input
+              type="text"
+              id="nombreUsuario"
+              name="nombreUsuario"
+              th:field="*{NombreUsuario}"
+              placeholder="Cree un nombre de usuario"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+      />
+    </div>
+
+    <div>
+      <label for="contrasenia" class="block text-gray-700 font-medium text-left mb-1">Contraseña</label>
+      <input
+              type="password"
+              id="contrasenia"
+              name="contrasenia"
+              th:field="*{Contrasenia}"
+              placeholder="Cree una contraseña"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+      />
+    </div>
+
+    <button
+            type="submit"
+            class="w-full py-3 bg-blue-600 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-200 mt-4"
+    >
+      Registrarse
+    </button>
+
+    <div class="mt-4">
+      <a th:href="@{/Redirect/login}" class="text-blue-600 font-medium hover:underline">
+        Ya tengo una cuenta
+      </a>
+    </div>
+  </form>
+</div>
+</body>
+</html>

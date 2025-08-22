@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+<div class="flex h-screen bg-gray-100">
+    <div class="bg-white w-64 p-6 flex flex-col justify-between shadow-lg">
+        <div>
+            <div class="mb-8">
+                <h1 class="text-xl font-bold text-gray-800">Logo</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="mb-4">
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                            Home
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a th:href="@{/Admin/gestionClase}" class="flex items-center p-2 rounded-lg bg-blue-100 text-blue-600 font-semibold">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 0a2 2 0 002 2h2a2 2 0 002-2"></path></svg>
+                            Gestión de Clases
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a th:href="@{/Admin/gestionCliente}" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h-4a2 2 0 01-2-2V8a2 2 0 012-2h4a2 2 0 012 2v10a2 2 0 01-2 2z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v4m0 0a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2a2 2 0 012-2h2z"></path></svg>
+                            Gestión de Clientes
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a th:href="@{/Admin/gestionReserva}" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h.01M17 11h.01M9 15h.01M15 15h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Gestión de reservas
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a th:href="@{/Admin/controlAsistencia}" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v10a2 2 0 002 2h5m-5-2h14m-14 0l-2-2m2 2v-4m-2 4h4m-4 0a2 2 0 01-2 2h-2a2 2 0 01-2-2m-2-4h14m-14 0v-4m14 4h-4m4 0a2 2 0 002-2v-2a2 2 0 00-2-2h-4a2 2 0 00-2 2v2a2 2 0 002 2z"></path></svg>
+                            Gestión asistencia
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a th:href="@{/Admin/historialAsistencia}" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m-2 2v-4m6 4v-4m-2 4v-2m2-4v-2m0 2h.01M12 21a9 9 0 110-18 9 9 0 010 18z"></path></svg>
+                            Reportes y estadísticas
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="w-full">
+            <a th:href="@{/Redirect/login}" class="w-full text-center py-2 px-4 bg-red-500 text-white font-bold rounded-lg shadow hover:bg-red-600 transition-colors duration-200">
+                Salir
+            </a>
+        </div>
+    </div>
+
+    <div class="flex-1 flex flex-col p-8">
+        <header class="flex items-center justify-between mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">Clases</h1>
+            <div class="flex space-x-4">
+                <a th:href="@{/Admin/gestionClase}" class="px-6 py-2 text-gray-600 hover:text-blue-600 transition-colors duration-200" >LISTADO</a>
+                <a th:href="@{/Admin/altaClase}" class="px-6 py-2 text-white bg-blue-600 rounded-lg shadow-md font-semibold hover:bg-blue-700 transition-colors duration-200">AGREGAR</a>
+            </div>
+        </header>
+
+        <div class="flex-grow bg-white p-8 rounded-lg shadow-lg">
+            <form action="#" th:action="@{/Admin/Guardar}" th:object="${Clase}" method="post" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <label for="titulo" class="block text-sm font-medium text-gray-700 mb-1">Título clase</label>
+                    <input type="text" id="titulo" name="titulo" th:field="*{Descripcion}" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <div>
+                    <label for="capacidadMaxima" class="block text-sm font-medium text-gray-700 mb-1">Capacidad máxima</label>
+                    <input type="number" id="capacidadMaxima" name="capacidadMaxima" th:field="*{CapacidadMaxima}" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <div>
+                    <label for="fecha" class="block text-sm font-medium text-gray-700 mb-1">Fecha</label>
+                    <input type="date" id="fecha" name="fecha" th:field="*{Fecha}" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <div>
+                    <label for="horarioInicio" class="block text-sm font-medium text-gray-700 mb-1">Horario Inicio</label>
+                    <input type="time" id="horarioInicio" name="horarioInicio" th:field="*{HorarioInicio}" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <div>
+                    <label for="horarioFin" class="block text-sm font-medium text-gray-700 mb-1">Horario fin</label>
+                    <input type="time" id="horarioFin" name="horarioFin" th:field="*{HorarioFin}" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <div>
+                    <label for="profesor" class="block text-sm font-medium text-gray-700 mb-1">Profesor</label>
+                    <select id="profesor" th:field="*{profesor}" name="profesor" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <option  th:each="profesor : ${ListaProfesores}" th:value="${profesor.IdProfesor}" th:text="${profesor.Nombre}">
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label for="sucursal" class="block text-sm font-medium text-gray-700 mb-1">Sucursal</label>
+                    <select id="sucursal" th:field="*{sucursal}" name="sucursal" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <option th:each="sucursal: ${ListaSucursales}" th:value="${sucursal.IdSucursal}" th:text="${sucursal.Nombre}"></option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <label for="tipoClase" class="block text-sm font-medium text-gray-700 mb-1">Tipo Clase</label>
+                    <select type="text" id="tipoClase" name="tipoClase" th:field="*{tipoclase}" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <option th:each="tipoclase: ${ListaTipoClase}" th:value="${tipoclase.IdTipoClase}" th:text="${tipoclase.Descripcion}"></option>
+                    </select>
+                </div>
+
+                <div class="col-span-1 md:col-span-3 mt-6 flex justify-end space-x-4">
+                    <button type="submit" class="px-6 py-2 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600 transition-colors duration-200">
+                        AGREGAR
+                    </button>
+                    <a href="#" class="px-6 py-2 bg-gray-500 text-white font-bold rounded-lg shadow hover:bg-gray-600 transition-colors duration-200">
+                        CANCELAR
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("guardar").addEventListener("click", function(){
+    fetch
+    })
+</script>
+</body>
+</html>
